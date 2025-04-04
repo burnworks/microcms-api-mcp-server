@@ -1,0 +1,30 @@
+{
+  "name": "microcms-api-mcp-server",
+  "version": "0.1.0",
+  "description": "MCPサーバでmicroCMS APIを利用可能にする",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node-esm src/index.ts"
+  },
+  "keywords": [
+    "mcp",
+    "microcms",
+    "api"
+  ],
+  "author": "burnworks",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.8.0",
+    "dotenv": "^16.4.7",
+    "node-fetch": "^3.3.2",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
+}
