@@ -22,18 +22,6 @@ cd microcms-api-mcp-server
 npm install
 ```
 
-## 設定
-
-1. `.env.local.example` を `.env.local` としてコピーし、必要な情報を設定します。
-
-```ini
-# microCMS APIキー
-MICROCMS_API_KEY=your_api_key_here
-
-# microCMSのサービスのベースURL
-MICROCMS_BASE_URL=https://your-service.microcms.io
-```
-
 ## 使用方法
 
 ### 必要なファイルのビルド
@@ -60,7 +48,11 @@ npm run build
       "command": "node",
       "args": [
         "/[__path__]/microcms-api-mcp-server/dist/index.js"
-      ]
+      ],
+      "env": {
+        "MICROCMS_API_KEY": "__your_api_key_here__",
+        "MICROCMS_BASE_URL": "https://your-service.microcms.io"
+      }
     }
   }
 }
@@ -75,7 +67,11 @@ Windows 環境であれば下記のような設定になるかもしれません
       "command": "C:/Program Files/nodejs/node.exe",
       "args": [
         "C:/[__path__]/microcms-api-mcp-server/dist/index.js"
-      ]
+      ],
+      "env": {
+        "MICROCMS_API_KEY": "__your_api_key_here__",
+        "MICROCMS_BASE_URL": "https://your-service.microcms.io"
+      }
     }
   }
 }
