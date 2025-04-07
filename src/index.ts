@@ -1,16 +1,9 @@
-// src/index.ts
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
-import * as dotenv from "dotenv";
-import { fileURLToPath } from 'url';
-import path from 'path';
 import fetch from "node-fetch";
 
 // 環境変数の読み込み
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-dotenv.config({ path: path.resolve(__dirname, '../.env.local') });
-
 const API_KEY = process.env.MICROCMS_API_KEY;
 const BASE_URL = process.env.MICROCMS_BASE_URL || "https://your-service.microcms.io";
 
@@ -101,7 +94,7 @@ const server = new McpServer({
 });
 
 // コンテンツ一覧取得のツール
-server.tool("get_contents", 
+server.tool("get_contents",
   {
     endpoint: z.string().describe("取得したいmicroCMSのAPIエンドポイント (例: 'blog')"),
     limit: z.number().optional().describe("取得する件数 (デフォルト: 10, 最大: 100)"),
@@ -126,16 +119,16 @@ server.tool("get_contents",
 
       const data = await microCMS.getList(params.endpoint, queryParams);
       return {
-        content: [{ 
-          type: "text", 
-          text: JSON.stringify(data, null, 2) 
+        content: [{
+          type: "text",
+          text: JSON.stringify(data, null, 2)
         }]
       };
     } catch (error) {
       return {
-        content: [{ 
-          type: "text", 
-          text: `エラー: ${error instanceof Error ? error.message : String(error)}` 
+        content: [{
+          type: "text",
+          text: `エラー: ${error instanceof Error ? error.message : String(error)}`
         }],
         isError: true
       };
@@ -144,7 +137,7 @@ server.tool("get_contents",
 );
 
 // 特定コンテンツ取得のツール
-server.tool("get_content", 
+server.tool("get_content",
   {
     endpoint: z.string().describe("取得したいmicroCMSのAPIエンドポイント (例: 'blog')"),
     contentId: z.string().describe("取得したいコンテンツのID"),
@@ -162,16 +155,16 @@ server.tool("get_content",
 
       const data = await microCMS.getContent(params.endpoint, params.contentId, queryParams);
       return {
-        content: [{ 
-          type: "text", 
-          text: JSON.stringify(data, null, 2) 
+        content: [{
+          type: "text",
+          text: JSON.stringify(data, null, 2)
         }]
       };
     } catch (error) {
       return {
-        content: [{ 
-          type: "text", 
-          text: `エラー: ${error instanceof Error ? error.message : String(error)}` 
+        content: [{
+          type: "text",
+          text: `エラー: ${error instanceof Error ? error.message : String(error)}`
         }],
         isError: true
       };
@@ -180,7 +173,7 @@ server.tool("get_content",
 );
 
 // コンテンツ検索のツール
-server.tool("search_contents", 
+server.tool("search_contents",
   {
     endpoint: z.string().describe("検索対象のmicroCMSのAPIエンドポイント (例: 'blog')"),
     q: z.string().describe("検索キーワード"),
@@ -202,16 +195,16 @@ server.tool("search_contents",
 
       const data = await microCMS.getList(params.endpoint, queryParams);
       return {
-        content: [{ 
-          type: "text", 
-          text: JSON.stringify(data, null, 2) 
+        content: [{
+          type: "text",
+          text: JSON.stringify(data, null, 2)
         }]
       };
     } catch (error) {
       return {
-        content: [{ 
-          type: "text", 
-          text: `エラー: ${error instanceof Error ? error.message : String(error)}` 
+        content: [{
+          type: "text",
+          text: `エラー: ${error instanceof Error ? error.message : String(error)}`
         }],
         isError: true
       };
@@ -220,7 +213,7 @@ server.tool("search_contents",
 );
 
 // フィルター検索用のツール
-server.tool("filter_contents", 
+server.tool("filter_contents",
   {
     endpoint: z.string().describe("検索対象のmicroCMSのAPIエンドポイント (例: 'blog')"),
     filters: z.string().describe("フィルター条件 (例: 'category[equals]news[and]createdAt[greater_than]2023-01-01')"),
@@ -242,16 +235,16 @@ server.tool("filter_contents",
 
       const data = await microCMS.getList(params.endpoint, queryParams);
       return {
-        content: [{ 
-          type: "text", 
-          text: JSON.stringify(data, null, 2) 
+        content: [{
+          type: "text",
+          text: JSON.stringify(data, null, 2)
         }]
       };
     } catch (error) {
       return {
-        content: [{ 
-          type: "text", 
-          text: `エラー: ${error instanceof Error ? error.message : String(error)}` 
+        content: [{
+          type: "text",
+          text: `エラー: ${error instanceof Error ? error.message : String(error)}`
         }],
         isError: true
       };
