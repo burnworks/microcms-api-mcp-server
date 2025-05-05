@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/burnworks-microcms-api-mcp-server-badge.png)](https://mseep.ai/app/burnworks-microcms-api-mcp-server)
+
 # microCMS MCP サーバ
 
 このプロジェクトは、[Model Context Protocol (MCP)](https://modelcontextprotocol.io) を使用して microCMS の API にアクセスするサーバを実装したものです。
